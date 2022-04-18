@@ -23,6 +23,7 @@ class PdfView extends StatefulWidget {
     this.onPageChanged,
     this.onDocumentLoaded,
     this.onDocumentError,
+    this.zoomable = true,
     this.builders = const PdfViewBuilders<DefaultBuilderOptions>(
       options: DefaultBuilderOptions(),
     ),
@@ -45,6 +46,9 @@ class PdfView extends StatefulWidget {
 
   /// Called when a document loading error
   final void Function(Object error)? onDocumentError;
+
+  // Zoomable pdf
+  final bool zoomable;
 
   /// Builders
   final PdfViewBuilders builders;
@@ -170,7 +174,7 @@ class _PdfViewState extends State<PdfView> {
       }
     }();
 
-    final defaultBuilder = builders as PdfViewBuilders<DefaultBuilderOptions>;
+    final defaultBuilder = builders;
     final options = defaultBuilder.options;
 
     return AnimatedSwitcher(
@@ -194,7 +198,7 @@ class _PdfViewState extends State<PdfView> {
           document.id,
         ),
         minScale: PhotoViewComputedScale.contained * 1,
-        maxScale: PhotoViewComputedScale.contained * 3.0,
+        maxScale: PhotoViewComputedScale.contained *  1.0,
         initialScale: PhotoViewComputedScale.contained * 1.0,
         heroAttributes: PhotoViewHeroAttributes(tag: '${document.id}-$index'),
       );
