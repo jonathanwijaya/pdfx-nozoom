@@ -198,7 +198,7 @@ class _PdfViewState extends State<PdfView> {
           document.id,
         ),
         minScale: PhotoViewComputedScale.contained * 1,
-        maxScale: PhotoViewComputedScale.contained *  1.0,
+        maxScale: widget.zoomable ? PhotoViewComputedScale.contained *  3.0 : PhotoViewComputedScale.contained * 1.0 ,
         initialScale: PhotoViewComputedScale.contained * 1.0,
         heroAttributes: PhotoViewHeroAttributes(tag: '${document.id}-$index'),
       );
